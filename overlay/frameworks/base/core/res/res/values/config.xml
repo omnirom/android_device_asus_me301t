@@ -151,7 +151,7 @@
     <bool name="config_voice_capable">false</bool>
     <bool name="config_sms_capable">false</bool>
 
-    <bool name="config_hasRemovableLid">false</bool>
+    <bool name="config_hasRemovableLid">true</bool>
     <bool name="config_lidControlsSleep">true</bool>
     <integer name="config_lidOpenRotation">0</integer>
     <integer name="config_lidKeyboardAccessibility">1</integer>

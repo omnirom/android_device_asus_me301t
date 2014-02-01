@@ -130,8 +130,8 @@ on boot
     chown system system /sys/bus/iio/devices/device0/proximity_low_threshold
     chown system system /sys/devices/platform/tegra-i2c.2/i2c-2/2-000f/enable
     chown system system /sys/devices/platform/tegra-i2c.2/i2c-2/2-000f/delay
-    chmod 777 /sys/devices/platform/tegra-i2c.2/i2c-2/2-000f/enable
-    chmod 777 /sys/devices/platform/tegra-i2c.2/i2c-2/2-000f/delay
+    chmod 0660 /sys/devices/platform/tegra-i2c.2/i2c-2/2-000f/enable
+    chmod 0660 /sys/devices/platform/tegra-i2c.2/i2c-2/2-000f/delay
     chown system system /sys/bus/i2c/devices/1-0015/ec_cmd_data_send
 
     # new nodes from linux kernel v3.4

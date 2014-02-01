@@ -2,7 +2,6 @@ bin/sensors-config
 bin/glgps
 etc/enctune.conf
 etc/asound.conf
-etc/dbus.conf
 etc/nvaudio_conf_RT5631.xml
 etc/nvaudio_conf_RT5642.xml
 etc/nvaudio_conf_WM8903.xml
@@ -22,12 +21,9 @@ etc/firmware/BCM4330B1_002.001.003.0379.0390.hcd
 etc/firmware/BCM4330B1_002.001.003.0609.0636.hcd
 etc/firmware/BCM4330B1_002.001.003.0967.0970.hcd
 etc/firmware/BCM4334B0_002.001.013.0258.0306.hcd
-etc/firmware/EC/DOCK-EC20N-0207.rom
-etc/firmware/EC/DOCK-EC21N-0105.rom
 etc/firmware/EC/FU-d.cfg
 etc/firmware/EC/OPEN-PAD-0216.rom
-etc/firmware/camera/02-01-000128.bin
-etc/firmware/camera/02-02-000128.bin
+etc/firmware/camera/0b-02-090027.bin
 
 etc/firmware/nvavp_aud_ucode.bin
 etc/firmware/nvavp_os_0ff00000.bin
@@ -60,6 +56,11 @@ lib/hw/lights.cardhu.so
 lib/hw/sensors.cardhu.so
 lib/hw/sensors6050.cardhu.so
 lib/hw/sensors_generic.cardhu.so
+lib/libinvensense_hal.so
+lib/libmllite3050.so
+lib/libmllite6050.so
+lib/libmlplatform3050.so
+lib/libmlplatform6050.so
 lib/libmplmpu3050.so
 lib/libmplmpu6050.so
 lib/mpu3050/libmllite.so
@@ -142,8 +143,8 @@ lib/libardrv_dynamic.so
 lib/libcgdrv.so
 
 lib/libsensors.al3010.so
-lib/libsensors.base6050.so
 lib/libsensors.base.so
+lib/libsensors.base6050.so
 lib/libsensors.isl29018.so
 lib/libsensors.isl29028.so
 lib/libsensors.ltr558als.so
@@ -181,8 +182,8 @@ vendor/firmware/bcm4334/fw_bcmdhd_apsta.bin
 vendor/firmware/bcm4334/fw_bcmdhd_p2p.bin
 vendor/lib/drm/libdrmwvmplugin.so
 vendor/lib/hw/power.cardhu.so
-vendor/lib/libWVStreamControlAPI_L3.so
-vendor/lib/libwvdrm_L3.so
+vendor/lib/libWVStreamControlAPI_L1.so
+vendor/lib/libwvdrm_L1.so
 vendor/lib/libwvm.so
 vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.7/left_eye-y0-yi45-p0-pi45-r0-ri20.lg_32/full_model.bin
 vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.7/nose_base-y0-yi45-p0-pi45-r0-ri20.lg_32/full_model.bin
