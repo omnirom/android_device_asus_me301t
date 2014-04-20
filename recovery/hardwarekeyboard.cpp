@@ -44,6 +44,7 @@ int HardwareKeyboard::KeyDown(int key_code) {
 
 	int keyboard = -1;
 	int shiftkey, Lshift_down, Rshift_down;
+	bool keydown = true;
 
 	DataManager::GetValue("Lshift_down", Lshift_down);
 	DataManager::GetValue("Rshift_down", Rshift_down);
@@ -368,17 +369,20 @@ int HardwareKeyboard::KeyDown(int key_code) {
 			keyboard = KEYBOARD_ARROW_RIGHT;
 			break;
 		case KEY_BACK: // back button on screen
-			PageManager::NotifyKey(KEY_BACK);
+		 mPressedKeys.insert( KEY_BACK );
+			PageManager::NotifyKey(KEY_BACK, keydown);
 			return 0;
 			break;
 		case KEY_HOMEPAGE: // keyboard home button
 		case KEY_HOME: // home button on screen
-			PageManager::NotifyKey(KEY_HOME);
+		 mPressedKeys.insert( KEY_HOME);
+			PageManager::NotifyKey(KEY_HOME, keydown);
 			return 0;
 			break;
 		case KEY_SLEEP: // keyboard lock button
 		case KEY_POWER: // tablet power button
-			PageManager::NotifyKey(KEY_POWER);
+		 mPressedKeys.insert( KEY_POWER );
+			PageManager::NotifyKey(KEY_POWER, keydown);
 			return 0;
 			break;
 #ifdef _EVENT_LOGGING
@@ -393,7 +397,8 @@ int HardwareKeyboard::KeyDown(int key_code) {
 			return 1;  // Return 1 to enable key repeat
 	} else {
 		DataManager::SetValue("last_key", 0);
-		PageManager::NotifyKey(keyboard);
+		mPressedKeys.insert( keyboard );
+		PageManager::NotifyKey(keyboard, keydown);
 	}
 	return 0;
 }
@@ -407,6 +412,13 @@ int HardwareKeyboard::KeyUp(int key_code) {
 	} else if (key_code == 31) { // Right Shift
 		DataManager::SetValue("Rshift_down", 0);
 	}
+	
+ std::set<int>::iterator itr = mPressedKeys.find(key_code);
+ if(itr != mPressedKeys.end())
+ {
+   mPressedKeys.erase(itr);
+   PageManager::NotifyKey(key_code, false);
+ }
 	return 0;
 }
 
@@ -420,4 +432,8 @@ int HardwareKeyboard::KeyRepeat(void) {
 	if (last_key)
 		PageManager::NotifyKeyboard(last_key);
 	return 0;
+}
+
+void HardwareKeyboard::ConsumeKeyRelease(int key) {
+  mPressedKeys.erase(key);
 }
