@@ -23,12 +23,11 @@ on init
     export SECONDARY_STORAGE /storage/sdcard1
 
     # create directory for mounting usb drives
-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /mnt/media_rw/usbdisk0 0700 media_rw media_rw
-    mkdir /mnt/media_rw/usbdisk1 0700 media_rw media_rw
-    mkdir /storage/sdcard1 0700 root root
-    mkdir /storage/usbdisk0 0700 root root
-    mkdir /storage/usbdisk1 0700 root root
+    chmod 0701 /mnt/media_rw
+    mkdir /mnt/media_rw/sdcard1 0775 system system
+    mkdir /mnt/media_rw/usbdisk0 0775 system system
+    mkdir /storage/sdcard1 0000 system system
+    mkdir /storage/usbdisk0 0000 system system
 
 on early-boot
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
@@ -331,15 +330,11 @@ service iprenew_bt-pan /system/bin/dhcpcd -n
 service sdcard /system/bin/sdcard /data/media /mnt/shell/emulated 1023 1023
     class late_start
 
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
     class late_start
     disabled
 
-service fuse_usbdisk0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk0 /storage/usbdisk0
-    class late_start
-    disabled
-
-service fuse_usbdisk1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk1 /storage/usbdisk1
+service fuse_usbdisk0 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/usbdisk0 /storage/usbdisk0
     class late_start
     disabled
 
