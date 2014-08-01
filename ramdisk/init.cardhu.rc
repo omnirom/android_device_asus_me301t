@@ -106,7 +106,7 @@ on boot
     chown system system /sys/class/graphics/fb0/device/smartdimmer/phase_in_adjustments
 
 # smartdimmer parameters
-    write /sys/class/graphics/fb0/device/smartdimmer/enable 0
+    write /sys/class/graphics/fb0/device/smartdimmer/enable 1
 
 # power
     chown system system /sys/kernel/tegra_cap/core_cap_level
