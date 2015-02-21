@@ -44,10 +44,8 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 ARCH_ARM_HAVE_32_BYTE_CACHE_LINES := true
 ARCH_ARM_USE_NON_NEON_MEMCPY := true
 
-NEED_WORKAROUND_CORTEX_A9_745320 := true
-
-# Boot/Recovery image settings  
-BOARD_KERNEL_CMDLINE := 
+# Boot/Recovery image settings
+BOARD_KERNEL_CMDLINE :=
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE :=
 
@@ -56,6 +54,10 @@ BOARD_EGL_CFG := device/asus/me301t/configs/egl.cfg
 USE_OPENGL_RENDERER := true
 BOARD_HAVE_PIXEL_FORMAT_INFO := true
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
+BOARD_USES_LEGACY_SET_POSITION := true
+
+# Acquire signature for WVM
+BOARD_USES_LEGACY_ACQUIRE_WVM := true
 
 # Misc display settings
 BOARD_USE_SKIA_LCDTEXT := true
@@ -87,20 +89,21 @@ WIFI_DRIVER_FW_PATH_AP      := "/system/vendor/firmware/bcm4334/fw_bcmdhd_apsta.
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 536870912
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 805306368
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 29850022707
 BOARD_FLASH_BLOCK_SIZE := 4096
-TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
+# TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
 
 # Try to build the kernel
 TARGET_KERNEL_SOURCE := kernel/asus/me301t
-TARGET_KERNEL_CONFIG := me301t_cm10_defconfig
+TARGET_KERNEL_CONFIG := omni_me301t_defconfig
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.7
 
 # Prebuilt Kernel Fallback
 #TARGET_PREBUILT_KERNEL := device/asus/me301t/kernel
 
-# Custom Tools
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/asus/me301t/releasetools/me301t_ota_from_target_files
+# Allow overriding partition for boot image
+TARGET_RELEASETOOL_OTA_FROM_TARGET_ADDITIONAL_ARGS := --override_boot_partition=/staging
 
 # SELinux policies
 BOARD_SEPOLICY_DIRS := \
@@ -117,10 +120,11 @@ BOARD_SEPOLICY_UNION := \
     file.te \
     rild.te \
     sensors_config.te \
-    shell.te \
     surfaceflinger.te \
     system.te \
     zygote.te
+
+MALLOC_IMPL := dlmalloc
 
 # CMHW
 BOARD_HARDWARE_CLASS := device/asus/me301t/cmhw/
@@ -129,7 +133,7 @@ BOARD_HARDWARE_CLASS := device/asus/me301t/cmhw/
 BOARD_CUSTOM_BOOTIMG_MK := device/asus/me301t/recovery/recovery.mk
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_LARGE_FILESYSTEM := true
-TARGET_RECOVERY_INITRC := device/asus/me301t/recovery/init.rc
+# TARGET_RECOVERY_INITRC := device/asus/me301t/recovery/init.rc
 BOARD_HAS_SDCARD_INTERNAL := true
 TARGET_RECOVERY_FSTAB := device/asus/me301t/ramdisk/fstab.cardhu
 
@@ -141,18 +145,6 @@ BOARD_HAS_NO_REAL_SDCARD := true
 TW_NO_USB_STORAGE := true
 TW_NO_REBOOT_BOOTLOADER := true
 TW_NO_REBOOT_RECOVERY := true
-TW_INCLUDE_JB_CRYPTO := true
-
+TW_INCLUDE_CRYPTO := true
 TW_INTERNAL_STORAGE_PATH := "/data/media"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
-TW_EXTERNAL_STORAGE_PATH := "/external_sdcard"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sdcard"
-
-TW_CRYPTO_FS_TYPE := "ext4"
-TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p8"
-TW_CRYPTO_MNT_POINT := "/data"
-#TW_CRYPTO_FS_OPTIONS := "journal_async_commit,data=writeback,nodelalloc"
-TW_CRYPTO_FS_OPTIONS := "data=ordered,delalloc"
-TW_CRYPTO_FS_FLAGS := "0x00000406"
-TW_CRYPTO_KEY_LOC := "footer"
-TWRP_CUSTOM_KEYBOARD := ../../../device/asus/tf300t/recovery/hardwarekeyboard.cpp
