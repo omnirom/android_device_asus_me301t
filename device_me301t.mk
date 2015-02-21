@@ -26,6 +26,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/fstab.cardhu:root/fstab.cardhu \
     $(LOCAL_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab
 
+# Wifi related files and packages
+PRODUCT_PACKAGES += \
+    hostapd \
+    dhcpcd.conf \
+    wpa_supplicant \
+    wpa_supplicant.conf
+
 # Input device config files
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/idc/atmel-maxtouch.idc:system/usr/idc/atmel-maxtouch.idc \
@@ -74,7 +81,6 @@ PRODUCT_PACKAGES += \
     tinymix \
     libaudioutils \
     blobpack_tfp \
-    mischelp \
     wifimacwriter
 
 # Propertys spacific for this device
@@ -90,7 +96,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.tegra.nvmmlite=1 \
     ro.zygote.disable_gl_preload=1
 
-# Prime spacific overrides
+# Propertys specific for this device
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.epad.model=ME301T \
     ro.product.model=ME301T \
@@ -100,20 +106,28 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072 \
     persist.sys.usb.config=mtp,adb
 
+# Camera
+PRODUCT_PROPERTY_OVERRIDES += \
+    camera2.portability.force_api=1
+
 # media files
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
-    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
+    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
 # gps config files
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gpsconfig.xml:system/etc/gps/gpsconfig.xml \
     $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/configs/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf \
-    $(LOCAL_PATH)/configs/dbus.conf:system/etc/dbus.conf \
-    $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+    $(LOCAL_PATH)/configs/dbus.conf:system/etc/dbus.conf
+ 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
 # Inherit tablet dalvik settings
 $(call inherit-product, frameworks/native/build/tablet-dalvik-heap.mk)
