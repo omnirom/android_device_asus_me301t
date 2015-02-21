@@ -193,7 +193,7 @@ on boot
 
 # Default Read Ahead value for sdcards
     write /sys/block/mmcblk0/queue/read_ahead_kb 2048
-    write /sys/block/mmcblk1/queue/read_ahead_kb 2048
+    write /sys/block/mmcblk1/queue/read_ahead_kb 512
 
 # GPS
     mkdir /data/gps
@@ -327,14 +327,14 @@ service iprenew_bt-pan /system/bin/dhcpcd -n
 #Sensor load calibration files end
 
 # virtual sdcard daemon running as media_rw (1023)
-service sdcard /system/bin/sdcard /data/media /mnt/shell/emulated 1023 1023
+service sdcard /system/bin/sdcard -u 1023 -g 1023 -t 4 -l /data/media /mnt/shell/emulated 
     class late_start
 
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -t 4 -d /mnt/media_rw/sdcard1 /storage/sdcard1
     class late_start
     disabled
 
-service fuse_usbdisk0 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/usbdisk0 /storage/usbdisk0
+service fuse_usbdisk0 /system/bin/sdcard -u 1023 -g 1023 -t 4 -d /mnt/media_rw/usbdisk0 /storage/usbdisk0
     class late_start
     disabled
 
@@ -355,17 +355,6 @@ service bdaddrwriter /system/bin/bdaddrwriter
 # filesystem, so we support FAT as of now.
 on device-added-/sys/block/sda
   mount vfat /dev/block/sda /mnt/usbdrive
-
-# configure MSC partition
-service mischelp /system/bin/mischelp /dev/block/mmcblk0p3 boot-recovery
-    disabled
-    class main
-    user root
-    group root
-    oneshot
-
-on property:sys.shutdown.requested=1recovery
-    start mischelp
 
 # Prepare TF service
 import init.tf.rc
