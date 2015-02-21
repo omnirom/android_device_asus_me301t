@@ -159,7 +159,8 @@
 <!--    <bool name="config_screenOffAnimation">false</bool> -->
 
    <bool name="config_showNavigationBar">true</bool>
-   <integer name="config_multiuserMaximumUsers">8</integer>
+   <integer name="config_multiuserMaximumUsers">4</integer>
+   <bool name="config_enableMultiUserUI">true</bool>
 
     <!-- Whether the device support custom performance profiles. Leave empty when
          the device do not support it. -->
@@ -170,4 +171,13 @@
 
     <!-- If this is true, the screen will fade off. -->
     <bool name="config_animateScreenLights">false</bool>
+
+    <string-array translatable="false" name="config_globalActionsList">
+        <item>power</item>
+        <item>reboot</item>
+        <item>airplane</item>
+        <item>users</item>
+        <item>silent</item>
+        <item>bugreport</item>
+    </string-array>
 </resources>
