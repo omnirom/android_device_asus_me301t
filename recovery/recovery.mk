@@ -1,10 +1,15 @@
 TF_BLOBIFIER := $(HOST_OUT_EXECUTABLES)/blobpack_tfp
+LZMA_BIN := /usr/bin/lzma
 
 
 $(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) \
 		$(recovery_ramdisk) \
 		$(TF_BLOBIFIER) \
 		$(recovery_kernel)
+	@echo ----- Compressing recovery ramdisk with lzma ------
+	rm -f $(recovery_uncompressed_ramdisk).lzma
+	$(LZMA_BIN) $(recovery_uncompressed_ramdisk)
+	$(hide) cp $(recovery_uncompressed_ramdisk).lzma $(recovery_ramdisk)
 	@echo ----- Making recovery image ------
 	$(MKBOOTIMG) $(INTERNAL_RECOVERYIMAGE_ARGS) --output $@.orig
 	$(TF_BLOBIFIER) $@ SOS $@.orig
