@@ -136,10 +136,10 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 # TARGET_RECOVERY_INITRC := device/asus/me301t/recovery/init.rc
 BOARD_HAS_SDCARD_INTERNAL := true
 TARGET_RECOVERY_FSTAB := device/asus/me301t/ramdisk/fstab.cardhu
-
+TARGET_USERIMAGES_USE_F2FS := true
 
 #TWRP
-DEVICE_RESOLUTION := 1280x800
+TW_THEME := landscape_hdpi
 RECOVERY_SDCARD_ON_DATA := true
 BOARD_HAS_NO_REAL_SDCARD := true
 TW_NO_USB_STORAGE := true
