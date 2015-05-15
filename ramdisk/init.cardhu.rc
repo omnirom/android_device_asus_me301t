@@ -23,11 +23,10 @@ on init
     export SECONDARY_STORAGE /storage/sdcard1
 
     # create directory for mounting usb drives
-    chmod 0701 /mnt/media_rw
-    mkdir /mnt/media_rw/sdcard1 0775 system system
-    mkdir /mnt/media_rw/usbdisk0 0775 system system
-    mkdir /storage/sdcard1 0000 system system
-    mkdir /storage/usbdisk0 0000 system system
+    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
+    mkdir /mnt/media_rw/usbdisk0 0700 media_rw media_rw
+    mkdir /storage/sdcard1 0700 root root
+    mkdir /storage/usbdisk0 0700 root root
 
 on early-boot
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
@@ -193,7 +192,7 @@ on boot
     chmod 444 /sys/firmware/fuse/odm_production_mode
 
 # Default Read Ahead value for sdcards
-    write /sys/block/mmcblk0/queue/read_ahead_kb 2048
+#    write /sys/block/mmcblk0/queue/read_ahead_kb 2048
     write /sys/block/mmcblk1/queue/read_ahead_kb 512
 
 # GPS
@@ -380,8 +379,4 @@ service setup_fs /system/bin/setup_fs \
     user root
     group root
     oneshot
-
-#Raydium touch setting
-service rm_ts_service    /system/bin/rm_ts_server
-    class main
 

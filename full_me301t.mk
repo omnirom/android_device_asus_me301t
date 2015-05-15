@@ -20,11 +20,11 @@ PRODUCT_AAPT_CONFIG := normal mdpi hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
 
 # Discard inherited values and use our own instead.
-PRODUCT_NAME := full_tf300t
-PRODUCT_DEVICE := tf300t
+PRODUCT_NAME := full_me301t
+PRODUCT_DEVICE := me301t
 PRODUCT_BRAND := Asus
-PRODUCT_MODEL := TF300T
+PRODUCT_MODEL := ME301T
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, device/asus/tf300t/device_tf300t.mk)
+$(call inherit-product, device/asus/tf300t/device_me301t.mk)
 # This is where we'd set a backup provider if we had one
