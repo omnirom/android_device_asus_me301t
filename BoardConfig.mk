@@ -19,9 +19,6 @@ USE_CAMERA_STUB := false
 BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
 TARGET_OTA_ASSERT_DEVICE := me301t,tf300t
 
-# Camera options
-COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
-
 # inherit from the proprietary version
 -include vendor/asus/me301t/BoardConfigVendor.mk
 
@@ -49,19 +46,19 @@ BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE :=
 
-# Video settings
+# EGL settings
 BOARD_EGL_CFG := device/asus/me301t/configs/egl.cfg
 USE_OPENGL_RENDERER := true
 BOARD_HAVE_PIXEL_FORMAT_INFO := true
+
+# Misc display settings
+BOARD_USE_SKIA_LCDTEXT := true
+BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 BOARD_USES_LEGACY_SET_POSITION := true
 
 # Acquire signature for WVM
 BOARD_USES_LEGACY_ACQUIRE_WVM := true
-
-# Misc display settings
-BOARD_USE_SKIA_LCDTEXT := true
-BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -141,7 +138,6 @@ MALLOC_IMPL := dlmalloc
 BOARD_CUSTOM_BOOTIMG_MK := device/asus/me301t/recovery/recovery.mk
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_LARGE_FILESYSTEM := true
-# TARGET_RECOVERY_INITRC := device/asus/me301t/recovery/init.rc
 BOARD_HAS_SDCARD_INTERNAL := true
 TARGET_RECOVERY_FSTAB := device/asus/me301t/ramdisk/fstab.cardhu
 TARGET_USERIMAGES_USE_F2FS := true
