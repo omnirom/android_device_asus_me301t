@@ -1,3 +1,16 @@
-allow surfaceflinger knv_device:chr_file rw_file_perms;
-allow surfaceflinger { sysfs_devices_system_cpu sysfs_devices_tegradc }:file w_file_perms;
+allow surfaceflinger { knv_device }:chr_file rw_file_perms;
+allow surfaceflinger { sysfs_devices_system_cpu sysfs_devices_tegradc }:file rw_file_perms;
+allow surfaceflinger sysfs_devices_tegradc:dir r_dir_perms;
+allow surfaceflinger sysfs_devices_tegradc:lnk_file { open getattr read };
 allow surfaceflinger sysfs_devices_system_cpu:dir w_dir_perms;
+
+# Kernel bug for Linux < 3.3: sysfs inodes can lose their security context
+# and revert to the base sysfs type.
+allow surfaceflinger sysfs:file write;
+
+# should be more specific to only target /data/data/com.nvidia.cap
+allow surfaceflinger system_data_file:sock_file create_file_perms;
+allow surfaceflinger system_data_file:dir rw_dir_perms;
+
+# allow surfaceflinger to read smartdimmer status
+allow surfaceflinger sysfs_smartdimmer:file r_file_perms;
