@@ -127,7 +127,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gpsconfig.xml:system/etc/gps/gpsconfig.xml \
     $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/configs/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf \
-    $(LOCAL_PATH)/configs/dbus.conf:system/etc/dbus.conf
+    $(LOCAL_PATH)/configs/dbus.conf:system/etc/dbus.conf \
+    $(LOCAL_PATH)/get-gps-lto:system/bin/get-gps-lto
 
 # Inherit tablet dalvik settings
 $(call inherit-product, frameworks/native/build/tablet-dalvik-heap.mk)

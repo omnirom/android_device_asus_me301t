@@ -352,6 +352,18 @@ service bdaddrwriter /system/bin/bdaddrwriter
   group root
   class late_start
 
+# Force download of long term orbit data (lto.dat)
+# for Broadcom aGPS
+service gps-lto-dat /system/bin/logwrapper /system/bin/get-gps-lto
+    user root
+    group root
+    disabled
+    oneshot
+
+on property:init.svc.wpa_supplicant=running
+    start gps-lto-dat
+
+
 # Mount usb drives as /usbdrive. Generally usb drives are formatted with FAT
 # filesystem, so we support FAT as of now.
 on device-added-/sys/block/sda
