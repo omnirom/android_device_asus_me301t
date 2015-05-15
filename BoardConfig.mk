@@ -137,9 +137,6 @@ BOARD_SEPOLICY_UNION += \
 
 MALLOC_IMPL := dlmalloc
 
-# CMHW
-BOARD_HARDWARE_CLASS := device/asus/me301t/cmhw/
-
 # Recovery Options
 BOARD_CUSTOM_BOOTIMG_MK := device/asus/me301t/recovery/recovery.mk
 BOARD_HAS_NO_SELECT_BUTTON := true
