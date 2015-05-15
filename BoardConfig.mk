@@ -96,7 +96,7 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 # TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
 
 # Try to build the kernel
-TARGET_KERNEL_SOURCE := kernel/asus/me301t
+TARGET_KERNEL_SOURCE := kernel/asus/tf300t
 TARGET_KERNEL_CONFIG := omni_me301t_defconfig
 TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.7
 
