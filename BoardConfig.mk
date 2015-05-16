@@ -42,7 +42,7 @@ ARCH_ARM_HAVE_32_BYTE_CACHE_LINES := true
 ARCH_ARM_USE_NON_NEON_MEMCPY := true
 
 # Boot/Recovery image settings
-BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := androidboot.selinux=enforcing
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE :=
 
