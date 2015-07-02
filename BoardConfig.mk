@@ -95,7 +95,7 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 # Try to build the kernel
 TARGET_KERNEL_SOURCE := kernel/asus/tf300t
 TARGET_KERNEL_CONFIG := omni_me301t_defconfig
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.7
+KERNEL_TOOLCHAIN := "$(ANDROID_BUILD_TOP)/prebuilts/gcc/$(strip $(HOST_OS))-x86/arm/arm-eabi-4.7/bin/"
 
 # Prebuilt Kernel Fallback
 #TARGET_PREBUILT_KERNEL := device/asus/me301t/kernel
