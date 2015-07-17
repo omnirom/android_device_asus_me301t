@@ -1,7 +1,7 @@
 [
   {
-   "repository":  "android_kernel_asus_tf300t",
-   "target_path": "kernel/asus/tf300t",
+   "repository":  "android_kernel_asus_tegra3",
+   "target_path": "kernel/asus/tegra3",
    "revision":    "android-5.1"
  },
  {

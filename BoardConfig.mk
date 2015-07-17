@@ -93,7 +93,7 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 # TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
 
 # Try to build the kernel
-TARGET_KERNEL_SOURCE := kernel/asus/tf300t
+TARGET_KERNEL_SOURCE := kernel/asus/tegra3
 TARGET_KERNEL_CONFIG := omni_me301t_defconfig
 KERNEL_TOOLCHAIN := "$(ANDROID_BUILD_TOP)/prebuilts/gcc/$(strip $(HOST_OS))-x86/arm/arm-eabi-4.7/bin/"
 
